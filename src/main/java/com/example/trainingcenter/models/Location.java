@@ -1,8 +1,7 @@
 package com.example.trainingcenter.models;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 public class Location {

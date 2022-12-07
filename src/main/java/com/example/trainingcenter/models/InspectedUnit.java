@@ -1,6 +1,6 @@
 package com.example.trainingcenter.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class InspectedUnit {

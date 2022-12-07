@@ -1,11 +1,7 @@
 package com.example.trainingcenter.models;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 public class Employee {
