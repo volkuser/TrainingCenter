@@ -12,4 +12,28 @@ public class TrainingCenter {
     @NotBlank(message = "value cannot be empty")
     @Pattern(regexp = "^[a-zA-Zа-яА-Я0-9- ]+$", message = "there should be no special characters")
     private String address;
+
+    public TrainingCenter(String address) {
+        this.address = address;
+    }
+
+    public TrainingCenter() {
+
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

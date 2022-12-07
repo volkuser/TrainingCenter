@@ -1,7 +1,7 @@
 package com.example.trainingcenter.controllers;
 
-import com.example.trainingcenter.models.Employee;
-import com.example.trainingcenter.services.EmployeeService;
+import com.example.trainingcenter.models.EquipmentType;
+import com.example.trainingcenter.repositories.EquipmentTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -13,43 +13,43 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/employee/more")
+@RequestMapping("/equipment_type/more")
 @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
-public class EmployeeItemController {
+public class EquipmentTypeItemController {
     @Autowired
-    private EmployeeService employeeService;
+    private EquipmentTypeRepository equipmentTypeRepository;
 
     @GetMapping("/{id}")
     public String more(@PathVariable("id") String id, Model model){
         getAndLoad(model, id);
-        return "employee_item_control";
+        return "equipment_type_item_control";
     }
 
     private void getAndLoad(Model model, String id){
-        Employee employee = employeeService.getById(Long.parseLong(id));
-        model.addAttribute("selectedEmployee", employee);
+        EquipmentType equipmentType = equipmentTypeRepository.findById(Long.parseLong(id)).orElseThrow();
+        model.addAttribute("selectedEquipmentType", equipmentType);
     }
 
     @PostMapping("/{id}")
-    public String update(@Valid @ModelAttribute("selectedEmployee") Employee employee,
+    public String update(@Valid @ModelAttribute("selectedEquipmentType") EquipmentType equipmentType,
                          BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
-        } else employeeService.save(employee);
+        } else equipmentTypeRepository.save(equipmentType);
 
-        getAndLoad(model, employee.getId().toString());
-        return "employee_item_control";
+        getAndLoad(model, equipmentType.getId().toString());
+        return "equipment_type_item_control";
     }
 
     @PostMapping("/{id}/delete")
     public String delete(@PathVariable("id") String id, Model model){
         try{
-            employeeService.deleteById(Long.parseLong(id));
-            return "redirect:/employee";
+            equipmentTypeRepository.deleteById(Long.parseLong(id));
+            return "redirect:/equipment_type";
         } catch (Exception exception) {
             getAndLoad(model, id);
-            return "redirect:/employee/more/{id}";
+            return "redirect:/equipment_type/more/{id}";
         }
     }
 }

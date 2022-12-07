@@ -7,10 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -18,12 +15,13 @@ import java.util.Map;
 import java.util.stream.StreamSupport;
 
 @Controller
+@RequestMapping("/employee")
 @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/employee")
+    @GetMapping
     public String show(Model model) {
         loadList(model);
         return "employee_control";
@@ -35,7 +33,7 @@ public class EmployeeController {
         model.addAttribute("employees", employees);
     }
 
-    @GetMapping("/employee/exact")
+    @GetMapping("/exact")
     public String exactSearch(@RequestParam(value = "query" ) String query, Model model){
         if (!query.isEmpty()){
             List<Employee> employees = employeeService.getResultExactSearch(query);
@@ -46,7 +44,7 @@ public class EmployeeController {
         } else return "redirect:/employee";
     }
 
-    @GetMapping("/employee/imprecise")
+    @GetMapping("/imprecise")
     public String impreciseSearch(@RequestParam(value = "query" ) String query, Model model){
         if (!query.isEmpty()){
             List<Employee> employees = employeeService.getResultImpreciseSearch(query);
@@ -57,7 +55,7 @@ public class EmployeeController {
         } else return "redirect:/employee";
     }
 
-    @PostMapping("/employee")
+    @PostMapping
     public String add(@Valid @ModelAttribute(value = "selectedEmployee") Employee employee,
                       BindingResult bindingResult, Model model, // specific is down
                       @RequestParam(value = "user", required = false) String userAsString){
@@ -70,4 +68,3 @@ public class EmployeeController {
         return "employee_control";
     }
 }
-

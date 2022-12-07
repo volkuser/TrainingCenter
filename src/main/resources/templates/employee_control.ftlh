@@ -21,7 +21,7 @@
                         <td><a href="employee/more/${employee.id}">Подробнее</a></td>
                     </tr>
                 <#else>
-                    <td>no employees</td>
+                    <td>сотрудников нет</td>
                 </#list>
                 </tbody>
             </table>
