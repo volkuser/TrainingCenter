@@ -2,17 +2,19 @@ package com.example.trainingcenter.services;
 
 import com.example.trainingcenter.models.InspectedUnit;
 import com.example.trainingcenter.repositories.InspectedUnitRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class InspectedUnitService {
-    @Autowired
-    private InspectedUnitRepository inspectedUnitRepository;
-    @Autowired
-    private EmployeeService employeeService;
+    private final InspectedUnitRepository inspectedUnitRepository;
+    private final EmployeeService employeeService;
+
+    public InspectedUnitService(InspectedUnitRepository inspectedUnitRepository, EmployeeService employeeService) {
+        this.inspectedUnitRepository = inspectedUnitRepository;
+        this.employeeService = employeeService;
+    }
 
     public Iterable<InspectedUnit> getAll() { return inspectedUnitRepository.findAll(); }
 

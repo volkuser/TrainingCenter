@@ -4,7 +4,6 @@ import com.example.trainingcenter.models.Employee;
 import com.example.trainingcenter.models.Role;
 import com.example.trainingcenter.models.User;
 import com.example.trainingcenter.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +11,15 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private EmployeeService employeeService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final EmployeeService employeeService;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, EmployeeService employeeService, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.employeeService = employeeService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     // registration
     public boolean createUser(User user, Employee employee){

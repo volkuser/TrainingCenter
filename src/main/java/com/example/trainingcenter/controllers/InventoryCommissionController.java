@@ -18,8 +18,11 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/inventory_commission")
 @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
 public class InventoryCommissionController {
-    @Autowired
-    private InventoryCommissionRepository inventoryCommissionRepository;
+    private final InventoryCommissionRepository inventoryCommissionRepository;
+
+    public InventoryCommissionController(InventoryCommissionRepository inventoryCommissionRepository) {
+        this.inventoryCommissionRepository = inventoryCommissionRepository;
+    }
 
     @GetMapping
     public String show(Model model) {

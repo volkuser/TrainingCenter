@@ -2,7 +2,6 @@ package com.example.trainingcenter.services;
 
 import com.example.trainingcenter.models.Equipment;
 import com.example.trainingcenter.repositories.EquipmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,9 +9,13 @@ import java.util.List;
 
 @Service
 public class EquipmentService {
-    @Autowired
-    private EquipmentRepository equipmentRepository;
-    @Autowired LocationService locationService;
+    private final EquipmentRepository equipmentRepository;
+    final LocationService locationService;
+
+    public EquipmentService(EquipmentRepository equipmentRepository, LocationService locationService) {
+        this.equipmentRepository = equipmentRepository;
+        this.locationService = locationService;
+    }
 
     public Iterable<Equipment> getAll() { return equipmentRepository.findAll(); }
 

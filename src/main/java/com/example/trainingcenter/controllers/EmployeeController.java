@@ -2,7 +2,6 @@ package com.example.trainingcenter.controllers;
 
 import com.example.trainingcenter.models.Employee;
 import com.example.trainingcenter.services.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +15,13 @@ import java.util.stream.StreamSupport;
 
 @Controller
 @RequestMapping("/employee")
-@PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
+@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'HR')")
 public class EmployeeController {
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping
     public String show(Model model) {

@@ -16,8 +16,11 @@ import java.util.Map;
 @RequestMapping("/inventory_commission/more")
 @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
 public class InventoryCommissionItemController {
-    @Autowired
-    private InventoryCommissionRepository inventoryCommissionRepository;
+    private final InventoryCommissionRepository inventoryCommissionRepository;
+
+    public InventoryCommissionItemController(InventoryCommissionRepository inventoryCommissionRepository) {
+        this.inventoryCommissionRepository = inventoryCommissionRepository;
+    }
 
     @GetMapping("/{id}")
     public String more(@PathVariable("id") String id, Model model){

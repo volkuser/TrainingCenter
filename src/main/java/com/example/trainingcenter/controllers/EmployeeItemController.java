@@ -2,7 +2,6 @@ package com.example.trainingcenter.controllers;
 
 import com.example.trainingcenter.models.Employee;
 import com.example.trainingcenter.services.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +13,13 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/employee/more")
-@PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
+@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'HR')")
 public class EmployeeItemController {
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
+
+    public EmployeeItemController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping("/{id}")
     public String more(@PathVariable("id") String id, Model model){

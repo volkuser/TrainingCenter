@@ -21,8 +21,11 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/training_center")
 @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
 public class TrainingCenterController {
-    @Autowired
-    private TrainingCenterRepository trainingCenterRepository;
+    private final TrainingCenterRepository trainingCenterRepository;
+
+    public TrainingCenterController(TrainingCenterRepository trainingCenterRepository) {
+        this.trainingCenterRepository = trainingCenterRepository;
+    }
 
     @GetMapping
     public String show(Model model) {

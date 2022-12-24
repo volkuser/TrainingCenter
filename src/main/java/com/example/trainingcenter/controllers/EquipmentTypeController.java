@@ -2,7 +2,6 @@ package com.example.trainingcenter.controllers;
 
 import com.example.trainingcenter.models.EquipmentType;
 import com.example.trainingcenter.repositories.EquipmentTypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +17,11 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/equipment_type")
 @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
 public class EquipmentTypeController {
-    @Autowired
-    private EquipmentTypeRepository equipmentTypeRepository;
+    private final EquipmentTypeRepository equipmentTypeRepository;
+
+    public EquipmentTypeController(EquipmentTypeRepository equipmentTypeRepository) {
+        this.equipmentTypeRepository = equipmentTypeRepository;
+    }
 
     @GetMapping
     public String show(Model model) {

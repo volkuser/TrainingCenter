@@ -4,7 +4,6 @@ import com.example.trainingcenter.models.Location;
 import com.example.trainingcenter.models.TrainingCenter;
 import com.example.trainingcenter.repositories.TrainingCenterRepository;
 import com.example.trainingcenter.services.LocationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +19,13 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/location/more")
 @PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'EMPLOYEE')")
 public class LocationItemController {
-    @Autowired
-    private LocationService locationService;
-    @Autowired
-    private TrainingCenterRepository trainingCenterRepository;
+    private final LocationService locationService;
+    private final TrainingCenterRepository trainingCenterRepository;
+
+    public LocationItemController(LocationService locationService, TrainingCenterRepository trainingCenterRepository) {
+        this.locationService = locationService;
+        this.trainingCenterRepository = trainingCenterRepository;
+    }
 
     @GetMapping("/{id}")
     public String more(@PathVariable("id") String id, Model model){

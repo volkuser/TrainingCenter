@@ -33,8 +33,11 @@
                     <a class="nav-link" href="/inventory_commission">Инвентаризационные комиссии</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/inspected_unit">Проверяемые единицы</a>
+                    <a class="nav-link" href="/equipment">Оборудование</a>
                 </li>
+                <#--<li class="nav-item">
+                    <a class="nav-link" href="/inspected_unit">Проверяемые единицы</a>
+                </li>-->
             </ul>
             <div>
                 <form action="/logout" method="post">

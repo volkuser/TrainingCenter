@@ -1,9 +1,7 @@
 package com.example.trainingcenter.controllers;
 
-import com.example.trainingcenter.models.EquipmentType;
 import com.example.trainingcenter.models.Unit;
 import com.example.trainingcenter.repositories.UnitRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +15,11 @@ import java.util.Map;
 @RequestMapping("/unit/more")
 @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
 public class UnitItemController {
-    @Autowired
-    private UnitRepository unitRepository;
+    private final UnitRepository unitRepository;
+
+    public UnitItemController(UnitRepository unitRepository) {
+        this.unitRepository = unitRepository;
+    }
 
     @GetMapping("/{id}")
     public String more(@PathVariable("id") String id, Model model){

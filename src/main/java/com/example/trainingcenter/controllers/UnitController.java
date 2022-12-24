@@ -2,7 +2,6 @@ package com.example.trainingcenter.controllers;
 
 import com.example.trainingcenter.models.Unit;
 import com.example.trainingcenter.repositories.UnitRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +17,11 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/unit")
 @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
 public class UnitController {
-    @Autowired
-    private UnitRepository unitRepository;
+    private final UnitRepository unitRepository;
+
+    public UnitController(UnitRepository unitRepository) {
+        this.unitRepository = unitRepository;
+    }
 
     @GetMapping
     public String show(Model model) {
