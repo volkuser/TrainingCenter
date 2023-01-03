@@ -1,6 +1,7 @@
 package com.example.trainingcenter.services;
 
 import com.example.trainingcenter.models.Employee;
+import com.example.trainingcenter.models.User;
 import com.example.trainingcenter.repositories.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -69,4 +70,8 @@ public class EmployeeService{
         return employeeRepository.findById(id).orElseThrow();
     }
     public void deleteById(Long id) { employeeRepository.deleteById(id); }
+
+    public Employee getByUser(User user){
+        return employeeRepository.findByUser(user).get(0);
+    }
 }

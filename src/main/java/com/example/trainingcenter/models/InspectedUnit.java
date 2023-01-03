@@ -8,15 +8,15 @@ public class InspectedUnit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "equipment_unit_id")
     private EquipmentUnit equipmentUnit;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "inventory_commission_id")
     private InventoryCommission inventoryCommission;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 

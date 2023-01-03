@@ -7,7 +7,7 @@
             <label class="form-label" for=name_id">Номер</label>
             <div class="p-2 d-flex flex-row">
                 <div class="d-flex flex-row">
-                    <input id="name_id" type="number" name="number" value="${selectedLocation.number}"
+                    <input id="name_id" type="number" name="number" value="${selectedLocation.number}" max="999"
                            class="form-control ${(numberError??)?string('is-invalid', '')} p-2">
                     <#if numberError??>
                         <div class="invalid-feedback p-2">
@@ -22,7 +22,12 @@
             <label>
                 <select name="trainingCenter" class="form-control">
                     <#list trainingCenters as trainingCenter>
-                        <option value="${trainingCenter.id}">${trainingCenter.address}</option>
+                        <#if trainingCenter.equals(selectedLocation.trainingCenter)>
+                            <option value="${selectedLocation.trainingCenter.id}" selected>
+                                ${selectedLocation.trainingCenter.address}</option>
+                        <#else>
+                            <option value="${trainingCenter.id}">${trainingCenter.address}</option>
+                        </#if>
                     </#list>
                 </select>
             </label>

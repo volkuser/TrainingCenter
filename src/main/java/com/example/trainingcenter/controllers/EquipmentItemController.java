@@ -6,7 +6,6 @@ import com.example.trainingcenter.models.Unit;
 import com.example.trainingcenter.repositories.EquipmentTypeRepository;
 import com.example.trainingcenter.repositories.UnitRepository;
 import com.example.trainingcenter.services.EquipmentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

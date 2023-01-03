@@ -22,7 +22,8 @@ public class LocationItemController {
     private final LocationService locationService;
     private final TrainingCenterRepository trainingCenterRepository;
 
-    public LocationItemController(LocationService locationService, TrainingCenterRepository trainingCenterRepository) {
+    public LocationItemController(LocationService locationService, 
+        TrainingCenterRepository trainingCenterRepository) {
         this.locationService = locationService;
         this.trainingCenterRepository = trainingCenterRepository;
     }

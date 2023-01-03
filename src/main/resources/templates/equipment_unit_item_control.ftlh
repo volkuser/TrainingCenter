@@ -22,7 +22,12 @@
             <label>
                 <select name="location" class="form-control">
                     <#list locations as location>
-                        <option value="${location.id}">${location.number}</option>
+                        <#if location.equals(selectedEquipmentUnit.location)>
+                            <option value="${selectedEquipmentUnit.location.id}" selected>
+                                ${selectedEquipmentUnit.location.number} | ${location.trainingCenter.address}</option>
+                        <#else>
+                            <option value="${location.id}">${location.number} | ${location.trainingCenter.address}</option>
+                        </#if>
                     </#list>
                 </select>
             </label>
@@ -32,7 +37,12 @@
             <label>
                 <select name="equipment" class="form-control">
                     <#list equipments as equipment>
-                        <option value="${equipment.id}">${equipment.model}</option>
+                        <#if equipment.equals(selectedEquipmentUnit.equipment)>
+                            <option value="${selectedEquipmentUnit.equipment.id}" selected>
+                                ${selectedEquipmentUnit.equipment.model}</option>
+                        <#else>
+                            <option value="${equipment.id}">${equipment.model}</option>
+                        </#if>
                     </#list>
                 </select>
             </label>
@@ -42,15 +52,35 @@
             <label>
                 <select name="availability" class="form-control">
                     <#list availabilities as availability>
-                        <option value="${availability.id}">${availability.name}</option>
+                        <#if availability.equals(selectedEquipmentUnit.availability)>
+                            <option value="${selectedEquipmentUnit.availability.id}" selected>
+                                ${selectedEquipmentUnit.availability.name}</option>
+                        <#else>
+                            <option value="${availability.id}">${availability.name}</option>
+                        </#if>
                     </#list>
                 </select>
             </label>
         </div>
         <div><input type="hidden" name="_csrf" value="${_csrf.token}"></div>
-        <a type="button" class="btn btn-primary" href="/location">Назад</a>
+        <a type="button" class="btn btn-primary" href="/equipment_unit">Назад</a>
         <button type="submit" formmethod="post" class="btn btn-primary">Изменить</button>
         <button type="submit" class="btn btn-primary"
-                formmethod="post" formaction="/location/more/${selectedLocation.id}/delete">Удалить</button>
+                formmethod="post" formaction="/equipment_unit/more/${selectedEquipmentUnit.id}/delete">Удалить</button>
+        
+        <!-- adding of new inspected unit -->
+        <div class="mb-3">
+            <label class="form-label">Отправка сотруднику на проверку в рамках крайней инвентаризации</label>
+            <label>
+                <select name="employee" class="form-control">
+                    <#list employees as employee>
+                        <option value="${employee.id}">${employee.surname}</option>
+                    </#list>
+                </select>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary"
+                formmethod="post" formaction="/equipment_unit/more/${selectedEquipmentUnit.id}/add_inspected_unit">
+                    Отправить</button>
     </form>
 </@c.page>

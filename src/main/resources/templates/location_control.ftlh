@@ -34,7 +34,7 @@
                         <label class="form-label" for="number_id">Номер</label>
                         <div class="p-2 d-flex flex-row">
                             <div class="d-flex flex-row">
-                                <input id="number_id" type="number" name="number"
+                                <input id="number_id" type="number" name="number" max="999"
                                        class="form-control ${(numberError??)?string('is-invalid', '')} p-2">
                                 <#if numberError??>
                                     <div class="invalid-feedback p-2">

@@ -1,5 +1,8 @@
 package com.example.trainingcenter.models;
 
+/* import java.util.HashSet;
+import java.util.Set; */
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -13,17 +16,21 @@ public class EquipmentUnit {
     @Pattern(regexp = "^[a-zA-Zа-яА-Я0-9-]+$", message = "only letters should be used in the value")
     private String inventoryNumber;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "availability_id")
     private Availability availability;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
+
+    /* @OneToMany
+    @JoinColumn(name = "inspected_unit_id")
+    private Set<InspectedUnit> inspectedUnits = new HashSet<>(); */
 
     public EquipmentUnit(String inventoryNumber, Availability availability, Location location, Equipment equipment) {
         this.inventoryNumber = inventoryNumber;

@@ -7,7 +7,7 @@
             <label class="form-label" for=name_id">Модель</label>
             <div class="p-2 d-flex flex-row">
                 <div class="d-flex flex-row">
-                    <input id="name_id" type="number" name="text" value="${selectedEquipment.model}"
+                    <input id="name_id" type="text" name="model" value="${selectedEquipment.model}"
                            class="form-control ${(numberError??)?string('is-invalid', '')} p-2">
                     <#if modelError??>
                         <div class="invalid-feedback p-2">
@@ -21,7 +21,7 @@
             <label class="form-label" for=name_id">Описание</label>
             <div class="p-2 d-flex flex-row">
                 <div class="d-flex flex-row">
-                    <input id="name_id" type="number" name="text" value="${selectedEquipment.description}"
+                    <input id="name_id" type="text" name="description" value="${selectedEquipment.description}"
                            class="form-control ${(numberError??)?string('is-invalid', '')} p-2">
                     <#if descriptionError??>
                         <div class="invalid-feedback p-2">

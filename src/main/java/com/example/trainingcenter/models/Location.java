@@ -13,7 +13,7 @@ public class Location {
     private int number;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "training_center_id")
     private TrainingCenter trainingCenter;
 

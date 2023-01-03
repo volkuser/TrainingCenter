@@ -1,6 +1,8 @@
 package com.example.trainingcenter.services;
 
+import com.example.trainingcenter.models.Employee;
 import com.example.trainingcenter.models.InspectedUnit;
+import com.example.trainingcenter.models.InventoryCommission;
 import com.example.trainingcenter.repositories.InspectedUnitRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,4 +31,13 @@ public class InspectedUnitService {
         return inspectedUnitRepository.findById(id).orElseThrow();
     }
     public void deleteById(Long id) { inspectedUnitRepository.deleteById(id); }
+
+    public List<InspectedUnit> getByEmployee(Employee employee){
+        return inspectedUnitRepository.findByEmployee(employee);
+    }
+
+    public List<InspectedUnit> getByInventoryCommissionAndEmployee(InventoryCommission inventoryCommission,
+        Employee employee) {
+        return inspectedUnitRepository.findByInventoryCommissionAndEmployee(inventoryCommission, employee);
+    }
 }

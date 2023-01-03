@@ -20,9 +20,9 @@
                         <td>${equipmentUnit.id}</td>
                         <td>${equipmentUnit.inventoryNumber}</td>
                         <td>${equipmentUnit.equipment.model}</td>
-                        <td>${equipmentUnit.location.number}</td>
+                        <td>${equipmentUnit.location.number} | ${equipmentUnit.location.trainingCenter.address}</td>
                         <td>${equipmentUnit.availability.name}</td>
-                        <td><a href="equipmentUnit/more/${equipmentUnit.id}">Подробнее</a></td>
+                        <td><a href="equipment_unit/more/${equipmentUnit.id}">Подробнее</a></td>
                     </tr>
                 <#else>
                     <td>нет единиц оборудования</td>
@@ -53,7 +53,8 @@
                         <label>
                             <select name="location" class="form-control">
                                 <#list locations as location>
-                                    <option value="${location.id}">${location.number}</option>
+                                    <option value="${location.id}">
+                                        ${location.number} | ${location.trainingCenter.address}</option>
                                 </#list>
                             </select>
                         </label>

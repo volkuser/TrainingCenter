@@ -14,11 +14,11 @@ public class Equipment {
     private String model;
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "unit_id")
     private Unit unit;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "equipment_type_id")
     private EquipmentType equipmentType;
 

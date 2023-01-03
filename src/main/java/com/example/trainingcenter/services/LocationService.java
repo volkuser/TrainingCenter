@@ -2,7 +2,6 @@ package com.example.trainingcenter.services;
 
 import com.example.trainingcenter.models.Location;
 import com.example.trainingcenter.repositories.LocationRepository;
-import com.example.trainingcenter.repositories.TrainingCenterRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,11 +10,9 @@ import java.util.List;
 @Service
 public class LocationService {
     private final LocationRepository locationRepository;
-    private final TrainingCenterRepository trainingCenterRepository;
 
-    public LocationService(LocationRepository locationRepository, TrainingCenterRepository trainingCenterRepository) {
+    public LocationService(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
-        this.trainingCenterRepository = trainingCenterRepository;
     }
 
     public Iterable<Location> getAll() { return locationRepository.findAll(); }
