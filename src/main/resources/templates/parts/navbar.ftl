@@ -35,9 +35,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/equipment">Оборудование</a>
                 </li>
-                <#--<li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="/inspected_unit">Проверяемые единицы</a>
-                </li>-->
+                </li>
             </ul>
             <div>
                 <form action="/logout" method="post">

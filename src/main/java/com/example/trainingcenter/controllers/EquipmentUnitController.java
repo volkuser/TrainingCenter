@@ -19,7 +19,7 @@ import java.util.stream.StreamSupport;
 
 @Controller
 @RequestMapping("/equipment_unit")
-@PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'EMPLOYEE')")
+@PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
 public class EquipmentUnitController {
     private final EquipmentUnitService equipmentUnitService;
     private final LocationService locationService;

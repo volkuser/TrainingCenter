@@ -72,6 +72,6 @@ public class EmployeeService{
     public void deleteById(Long id) { employeeRepository.deleteById(id); }
 
     public Employee getByUser(User user){
-        return employeeRepository.findByUser(user).get(0);
+        return user.getEmployee();
     }
 }
